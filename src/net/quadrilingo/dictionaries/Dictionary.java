@@ -7,19 +7,26 @@ import java.util.Set;
 
 public class Dictionary {
     private String letter;
-    private Set<String> wordsCollection = new HashSet<>();
 
     private Map<String, Set<String>> dictionary = new HashMap<>();
 
     public Dictionary() {
-    }
-
-    public void createDictionary() {
         for (int i = 97; i < 123; i++) {
             char letterAscii = (char) i;
             this.letter = "" + letterAscii;
-            dictionary.put(letter, this.wordsCollection);
+            dictionary.put(letter, new HashSet<>());
         }
+    }
+
+    public void addWord(String word) {  
+        String wordFormatted = formatText(word);
+        String wordFirstLetter = Character.toString(wordFormatted.charAt(0));
+        if (dictionary.containsKey(wordFirstLetter)) {
+            dictionary.get(wordFirstLetter).add(wordFormatted);
+        }
+    }
+    private String formatText(String text) {
+        return text.toLowerCase().replaceAll("\\s", "");
     }
 
     @Override
