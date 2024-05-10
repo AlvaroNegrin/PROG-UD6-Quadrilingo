@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import net.quadrilingo.decorationstuff.ConsoleColors;
+
 public class Dictionary {
     private String letter;
 
@@ -24,10 +26,12 @@ public class Dictionary {
             String wordFirstLetter = Character.toString(wordFormatted.charAt(0));
             if (dictionary.containsKey(wordFirstLetter)) {
                 dictionary.get(wordFirstLetter).add(wordFormatted);
-                System.out.println("Su palabra " + wordFormatted + " se ha añadido correctamente");
+                System.out.println(ConsoleColors.changeAnsiBoldColor("Su palabra " + ConsoleColors.ANSI_ORANGE + 
+                wordFormatted + ConsoleColors.ANSI_GREEN + " se ha añadido correctamente", ConsoleColors.ANSI_GREEN));
             }
         } else {
-            System.out.println("La palabra no es valida");
+            System.out.println(ConsoleColors.changeAnsiBoldColor("La palabra no es valida", 
+            ConsoleColors.ANSI_RED));
         }
     }
 
@@ -35,14 +39,18 @@ public class Dictionary {
         if (!this.containsNumber(word) && word.length() > 0) {
             String wordFormatted = this.formatText(word);
             String wordFirstLetter = Character.toString(wordFormatted.charAt(0));
-            if (dictionary.containsKey(wordFirstLetter)) {
+
+            if (dictionary.containsKey(wordFirstLetter) && dictionary.get(wordFirstLetter).contains(wordFormatted)) {
                 dictionary.get(wordFirstLetter).remove(wordFormatted);
-                System.out.println("Su palabra " + wordFormatted + " se ha eliminado correctamente");
+
+                System.out.println(ConsoleColors.changeAnsiBoldColor("Su palabra " + ConsoleColors.ANSI_ORANGE + wordFormatted + ConsoleColors.ANSI_GREEN + " se ha eliminado correctamente", ConsoleColors.ANSI_GREEN));
             } else {
-                System.out.println("Su palabra no se encuentra en el diccionario");
+                System.out.println(ConsoleColors.changeAnsiBoldColor("Su palabra no se encuentra en el diccionario", 
+                ConsoleColors.ANSI_RED));
             }
         } else {
-            System.out.println("La palabra no es valida");
+            System.out.println(ConsoleColors.changeAnsiBoldColor("La palabra no es valida", 
+            ConsoleColors.ANSI_RED));
         }
     }
 
@@ -50,11 +58,14 @@ public class Dictionary {
         if (!this.containsNumber(word) && word.length() > 0) {
             String wordFormatted = formatText(word);
             String wordFirstLetter = Character.toString(wordFormatted.charAt(0));
-            return dictionary.get(wordFirstLetter).contains(wordFormatted)
-                    ? "¡Se ha encontrado la palabra " + wordFormatted + " en el diccionario!"
-                    : "La palabra " + wordFormatted + " no esta en el diccionario.";
+
+            return dictionary.get(wordFirstLetter).contains(wordFormatted) ? 
+            ConsoleColors.changeAnsiBoldColor("¡Se ha encontrado la palabra " + ConsoleColors.ANSI_ORANGE + 
+            wordFormatted + ConsoleColors.ANSI_GREEN + " en el diccionario!", ConsoleColors.ANSI_GREEN) : 
+            ConsoleColors.changeAnsiBoldColor( "La palabra " + ConsoleColors.ANSI_YELLOW + wordFormatted + 
+            ConsoleColors.ANSI_RED + " no esta en el diccionario.", ConsoleColors.ANSI_RED);
         }
-        return "La palabra no es valida";
+        return ConsoleColors.changeAnsiBoldColor("La palabra no es valida", ConsoleColors.ANSI_RED);
     }
 
     public void showInitialsWithInfo() {
@@ -62,13 +73,14 @@ public class Dictionary {
 
         for (Map.Entry<String, Set<String>> entry : dictionary.entrySet()) {
             if (!entry.getValue().isEmpty()) {
-                initialsWithInfo += entry.getKey() + ",";
+                initialsWithInfo += ConsoleColors.ANSI_ORANGE + "- " + 
+                ConsoleColors.ANSI_YELLOW + entry.getKey() + ConsoleColors.ANSI_RESET +"\n";
             }
         }
         if (initialsWithInfo == "") {
-            System.out.println("No hay ninguna inicial que contenga palabras");
+            System.out.println(ConsoleColors.changeAnsiBoldColor("No hay ninguna inicial que contenga palabras", ConsoleColors.ANSI_ORANGE));
         } else {
-            System.out.println("Estas son las iniciales que contienen alguna palabra:");
+            System.out.println(ConsoleColors.changeAnsiColor("Estas son las iniciales que contienen alguna palabra:", ConsoleColors.ANSI_GREEN));
             System.out.println(initialsWithInfo);
         }
     }
@@ -78,12 +90,13 @@ public class Dictionary {
         for (Map.Entry<String, Set<String>> entry : dictionary.entrySet()) {
             if (entry.getKey().equalsIgnoreCase(letterFormatted)) {
                 if (entry.getValue().isEmpty()) {
-                    System.out.println("Lo siento maquina, esta vacia la lista");
+                    System.out.println(ConsoleColors.changeAnsiBoldColor("Lo siento maquina, esta vacia la lista ;)", ConsoleColors.ANSI_YELLOW));
                 } else {
-                    System.out.println("Lista de la letra " + letterFormatted + ":\n" + entry.getValue());
+                    System.out.println(ConsoleColors.changeAnsiColor("Lista de la letra " + ConsoleColors.ANSI_RED
+                    + letterFormatted + ConsoleColors.ANSI_YELLOW + ":\n", ConsoleColors.ANSI_YELLOW) + entry.getValue());
                 }
             } else if (letter.length() == 0) {
-                System.out.println("La letra no es valida");
+                System.out.println(ConsoleColors.changeAnsiBoldColor("La letra no es valida", ConsoleColors.ANSI_RED));
                 break;
             }
         }
