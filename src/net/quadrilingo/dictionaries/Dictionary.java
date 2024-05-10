@@ -19,31 +19,42 @@ public class Dictionary {
     }
 
     public void addWord(String word) {
-        String wordFormatted = this.formatText(word);
-        String wordFirstLetter = Character.toString(wordFormatted.charAt(0));
-        if (dictionary.containsKey(wordFirstLetter)) {
-            dictionary.get(wordFirstLetter).add(wordFormatted);
-            System.out.println("Su palabra " + wordFormatted + " se ha añadido correctamente");
+        if (!this.containsNumber(word)) {
+            String wordFormatted = this.formatText(word);
+            String wordFirstLetter = Character.toString(wordFormatted.charAt(0));
+            if (dictionary.containsKey(wordFirstLetter)) {
+                dictionary.get(wordFirstLetter).add(wordFormatted);
+                System.out.println("Su palabra " + wordFormatted + " se ha añadido correctamente");
+            }
+        } else {
+            System.out.println("La palabra no es valida");
         }
     }
 
     public void deleteWord(String word) {
-        String wordFormatted = this.formatText(word);
-        String wordFirstLetter = Character.toString(wordFormatted.charAt(0));
-        if (dictionary.containsKey(wordFirstLetter)) {
-            dictionary.get(wordFirstLetter).remove(wordFormatted);
-            System.out.println("Su palabra " + wordFormatted + " se ha eliminado correctamente");
+        if (!this.containsNumber(word)) {
+            String wordFormatted = this.formatText(word);
+            String wordFirstLetter = Character.toString(wordFormatted.charAt(0));
+            if (dictionary.containsKey(wordFirstLetter)) {
+                dictionary.get(wordFirstLetter).remove(wordFormatted);
+                System.out.println("Su palabra " + wordFormatted + " se ha eliminado correctamente");
+            } else {
+                System.out.println("Su palabra no se encuentra en el diccionario");
+            }
         } else {
-            System.out.println("Su palabra no se encuentra en el diccionario");
+            System.out.println("La palabra no es valida");
         }
     }
 
     public String showWordIfExists(String word) {
-        String wordFormatted = formatText(word);
-        String wordFirstLetter = Character.toString(wordFormatted.charAt(0));
-        return dictionary.get(wordFirstLetter).contains(wordFormatted)
-                ? "¡Se ha encontrado la palabra " + wordFormatted + " en el diccionario!"
-                : "La palabra " + wordFormatted + " no esta en el diccionario.";
+        if (!this.containsNumber(word)) {
+            String wordFormatted = formatText(word);
+            String wordFirstLetter = Character.toString(wordFormatted.charAt(0));
+            return dictionary.get(wordFirstLetter).contains(wordFormatted)
+                    ? "¡Se ha encontrado la palabra " + wordFormatted + " en el diccionario!"
+                    : "La palabra " + wordFormatted + " no esta en el diccionario.";
+        }
+        return "La palabra no es valida";
     }
 
     public void showInitialsWithInfo() {
@@ -78,5 +89,14 @@ public class Dictionary {
 
     private String formatText(String text) {
         return text.toLowerCase().replaceAll("\\s", "");
+    }
+
+    private boolean containsNumber(String word) {
+        for (int i = 0; i < word.length(); i++) {
+            if (Character.isDigit(word.charAt(i))) {
+                return true;
+            }
+        }
+        return false;
     }
 }
