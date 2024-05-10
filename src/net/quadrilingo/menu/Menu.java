@@ -12,10 +12,10 @@ public class Menu {
     public static boolean isKeepAsking() {
         return keepAsking;
     }
+
     public static void setKeepAsking(boolean keepAsking) {
         Menu.keepAsking = keepAsking;
-    }   
-
+    }
 
     public static void showMainMenu() {
         String message = """
@@ -40,32 +40,30 @@ public class Menu {
                 dictionary.addWord(userText);
                 break;
             case "2":
-                
+                System.out.println("Introduzca la palabra a eliminar");
+                userText = SC.nextLine();
+                dictionary.deleteWord(userText);
                 break;
             case "3":
-                
+                System.out.println("Introduzca la palabra a buscar");
+                userText = SC.nextLine();
+                System.out.println(dictionary.showWordIfExists(userText));
                 break;
             case "4":
-                
+                dictionary.showInitialsWithInfo();
                 break;
             case "5":
-                
+                System.out.println("Introduzca la inicial de una letra para buscar las palabras que comiencen por dicha letra");
+                userText = SC.nextLine();
+                dictionary.showWordsByInitial(userText);
                 break;
             case "6":
-                
+                setKeepAsking(false);
+                System.out.println("¡Adios! \n¡Gracias por usar nuestro programa!");
                 break;
-        
+
             default:
                 break;
         }
     }
 }
-
-
-
-
-
-
-
-
-
