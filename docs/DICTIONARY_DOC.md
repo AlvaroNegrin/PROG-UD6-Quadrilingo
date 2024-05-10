@@ -137,7 +137,7 @@ public class Dictionary {
 - **letter**
 > Este atributo guardará todas las claves del diccionario. Es decir (a,b,c...)
 
-- dictionary
+- **dictionary**
 > Este atributo será el eje principal del programa, ya que será el que guardará llaves y valores debido a ser un Map.
 
 # Constructor
