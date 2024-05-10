@@ -82,6 +82,9 @@ public class Dictionary {
                 } else {
                     System.out.println("Lista de la letra " + letterFormatted + ":\n" + entry.getValue());
                 }
+            } else if (letter.length() == 0) {
+                System.out.println("La letra no es valida");
+                break;
             }
         }
 
