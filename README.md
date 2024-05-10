@@ -12,3 +12,7 @@ Si desea saber la información sobre las clases del programa puede clickear en u
 - [Clase Dictionary](./docs/DICTIONARY_DOC.md)
 - [Clase Menú](./docs/MENU_DOC.md)
 - [Clase ConsoleColors](./docs/CONSOLE_COLORS_DOC.md)
+
+Cabe recalcar nuestro senior de este proyecto, nos dijo que nuestro querido amigo verde nos daría un trato especial como se lo hicieron a cierto personaje de anime:
+
+![Z](https://github.com/AlvaroNegrin/PROG-UD6-Quadrilingo/assets/159430287/478e228c-969e-47b8-9518-19ca3a221bef)
