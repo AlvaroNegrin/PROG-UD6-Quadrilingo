@@ -19,7 +19,7 @@ public class Dictionary {
     }
 
     public void addWord(String word) {
-        if (!this.containsNumber(word)) {
+        if (!this.containsNumber(word) && word.length() > 0) {
             String wordFormatted = this.formatText(word);
             String wordFirstLetter = Character.toString(wordFormatted.charAt(0));
             if (dictionary.containsKey(wordFirstLetter)) {
@@ -32,7 +32,7 @@ public class Dictionary {
     }
 
     public void deleteWord(String word) {
-        if (!this.containsNumber(word)) {
+        if (!this.containsNumber(word) && word.length() > 0) {
             String wordFormatted = this.formatText(word);
             String wordFirstLetter = Character.toString(wordFormatted.charAt(0));
             if (dictionary.containsKey(wordFirstLetter)) {
@@ -47,7 +47,7 @@ public class Dictionary {
     }
 
     public String showWordIfExists(String word) {
-        if (!this.containsNumber(word)) {
+        if (!this.containsNumber(word) && word.length() > 0) {
             String wordFormatted = formatText(word);
             String wordFirstLetter = Character.toString(wordFormatted.charAt(0));
             return dictionary.get(wordFirstLetter).contains(wordFormatted)
