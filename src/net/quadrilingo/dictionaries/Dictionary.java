@@ -23,6 +23,7 @@ public class Dictionary {
         String wordFirstLetter = Character.toString(wordFormatted.charAt(0));
         if (dictionary.containsKey(wordFirstLetter)) {
             dictionary.get(wordFirstLetter).add(wordFormatted);
+            System.out.println("Su palabra " + wordFormatted + " se ha añadido correctamente");
         }
     }
 
@@ -31,6 +32,9 @@ public class Dictionary {
         String wordFirstLetter = Character.toString(wordFormatted.charAt(0));
         if (dictionary.containsKey(wordFirstLetter)) {
             dictionary.get(wordFirstLetter).remove(wordFormatted);
+            System.out.println("Su palabra " + wordFormatted + " se ha eliminado correctamente");
+        } else {
+            System.out.println("Su palabra no se encuentra en el diccionario");
         }
     }
 
@@ -43,18 +47,18 @@ public class Dictionary {
     }
 
     public void showInitialsWithInfo() {
-        String temp = "";
+        String initialsWithInfo = "";
 
         for (Map.Entry<String, Set<String>> entry : dictionary.entrySet()) {
             if (!entry.getValue().isEmpty()) {
-                temp += entry.getKey() + ",";
+                initialsWithInfo += entry.getKey() + ",";
             }
         }
-        if (temp == "") {
+        if (initialsWithInfo == "") {
             System.out.println("No hay ninguna inicial que contenga palabras");
         } else {
             System.out.println("Estas son las iniciales que contienen alguna palabra:");
-            System.out.println(temp);
+            System.out.println(initialsWithInfo);
         }
     }
 
@@ -74,10 +78,5 @@ public class Dictionary {
 
     private String formatText(String text) {
         return text.toLowerCase().replaceAll("\\s", "");
-    }
-
-    @Override
-    public String toString() {
-        return "Diccionario [diccionario=" + dictionary + "]";
     }
 }
