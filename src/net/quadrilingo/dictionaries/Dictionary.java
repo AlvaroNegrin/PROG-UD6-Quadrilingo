@@ -40,7 +40,7 @@ public class Dictionary {
             String wordFormatted = this.formatText(word);
             String wordFirstLetter = Character.toString(wordFormatted.charAt(0));
 
-            if (dictionary.containsKey(wordFirstLetter) && dictionary.get(wordFirstLetter).contains(wordFormatted)) {
+            if (dictionary.get(wordFirstLetter).contains(wordFormatted)) {
                 dictionary.get(wordFirstLetter).remove(wordFormatted);
 
                 System.out.println(ConsoleColors.changeAnsiBoldColor("Su palabra " + ConsoleColors.ANSI_ORANGE + wordFormatted + ConsoleColors.ANSI_GREEN + " se ha eliminado correctamente", ConsoleColors.ANSI_GREEN));
@@ -95,7 +95,7 @@ public class Dictionary {
                     System.out.println(ConsoleColors.changeAnsiColor("Lista de la letra " + ConsoleColors.ANSI_RED
                     + letterFormatted + ConsoleColors.ANSI_YELLOW + ":\n", ConsoleColors.ANSI_YELLOW) + entry.getValue());
                 }
-            } else if (letter.length() == 0) {
+            } else if (letter.length() == 0 || letter.length() > 1) {
                 System.out.println(ConsoleColors.changeAnsiBoldColor("La letra no es valida", ConsoleColors.ANSI_RED));
                 break;
             }
